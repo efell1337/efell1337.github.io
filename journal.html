@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your external CSS file for background -->
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            background: url('istockphoto-534680417-612x612.jpg') no-repeat center center fixed; /* Adjust to your actual background from style.css */
+            background-size: cover;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: rgba(250, 202, 243, 0.9);
+            border: 5px solid #ff84c1;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            flex-shrink: 0;
+            margin: 20px;
+            position: fixed;
+            top: 20px; /* Customizable */
+            left: 20px; /* Customizable */
+        }
+
+        .sidebar h2 {
+            color: #ff69b4;
+            text-align: center;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+
+        .sidebar ul li button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        .sidebar ul li button:hover {
+            background-color: #ff1493;
+        }
+
+        .content {
+  padding: 20px;
+  background-image: linear-gradient(to bottom, rgba(255, 0, 217, 0.144) 0%, rgba(252, 220, 247, 1) 800px);
+  background-size: 100% 900px;
+  background-repeat: no-repeat;
+  background-color: rgba(252, 220, 247, 0.9);
+  border: 5px solid #ff84c1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  margin-left: 300px;
+  width: 90%; /* Adjust the width to accommodate the sidebar */
+  max-width: 1200px; /* Set the maximum width */
+  min-width: 1550px; /* Set the minimum width */
+  height: 86%;
+}
+
+
+        .content h1 {
+            color: #ff69b4;
+        }
+
+        .content p {
+            color: #8b0000;
+        }
+
+        .content button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 150px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .content button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Categories</h2>
+        <ul id="categoryList">
+            <!-- Categories will be loaded here -->
+        </ul>
+    </div>
+    <div class="content">
+        <h1 id="contentTitle">Hello my love :3</h1>
+        <p id="contentText">It seems like you wanted to view my journal</p>
+        <p id="contentText">On the left you'll se buttons, click whichever one you want</p>
+    </div>
+
+    <script>
+        const categories = {
+            "Main": ["file1.txt", "file2.txt"],
+            "Work": ["file3.txt", "file4.txt"],
+            "Personal": ["file5.txt", "file6.txt"]
+        };
+
+        const categoryList = document.getElementById('categoryList');
+        const contentTitle = document.getElementById('contentTitle');
+        const contentText = document.getElementById('contentText');
+
+        // Populate the category list
+        for (const category in categories) {
+            const li = document.createElement('li');
+            const button = document.createElement('button');
+            button.textContent = category;
+            button.addEventListener('click', () => showFiles(category));
+            li.appendChild(button);
+            categoryList.appendChild(li);
+        }
+
+        // Function to show files in the selected category
+        function showFiles(category) {
+            const files = categories[category];
+            contentTitle.textContent = category;
+            contentText.innerHTML = '';
+            files.forEach(file => {
+                const fileButton = document.createElement('button');
+                fileButton.textContent = file.replace('.txt', '');
+                fileButton.addEventListener('click', () => showContent(file));
+                contentText.appendChild(fileButton);
+            });
+        }
+
+        // Function to show content of the selected file
+        async function showContent(file) {
+            try {
+                const response = await fetch(file);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${file}: ${response.statusText}`);
+                }
+                const fileContent = await response.text();
+                contentTitle.textContent = file.replace('.txt', '');
+                contentText.textContent = fileContent;
+            } catch (error) {
+                contentTitle.textContent = 'Error';
+                contentText.textContent = error.message;
+            }
+        }
+    </script>
+</body>
+</html>
