@@ -1,0 +1,106 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('https://media.istockphoto.com/id/534680417/vector/abstract-hearts-background.jpg?s=612x612&w=0&k=20&c=uZwKFotLMNRPs9_Ti6NFcy-tufweKdrLx4PtxJU5_EE=') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative; /* Set position to relative for positioning elements */
+}
+
+.container {
+    background-color: rgba(250, 202, 243, 0.9);
+    padding: 20px;
+    border: 5px solid #ff84c1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute; /* Set position to absolute for positioning within body */
+    top: 50%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%); /* Center the container */
+    z-index: 1; /* Ensure container is above the background */
+}
+
+h1 {
+    color: #ff69b4;
+}
+
+p {
+    color: #8b0000;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ff69b4;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+.heart-gif {
+    width: 230px; /* Adjust as needed */
+    height: auto;
+    display: block;
+    position: absolute; /* Set position to absolute for positioning within body */
+    top: 30px; /* Adjust as needed */
+    right: 50;
+    animation: heartbeat 2s infinite; /* Add heartbeat animation */
+    z-index: 2; /* Ensure heart GIF is above the container */
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.letter {
+    background-color: rgba(250, 202, 243, 0.9);
+    padding: 20px;
+    border: 5px solid #ff84c1;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: left;
+}
+
+.letter h1 {
+    color: #ff69b4;
+}
+
+.letter p {
+    color: #8b0000;
+}
+.option-list {
+    display: flex;
+    flex-wrap: wrap;
+}
