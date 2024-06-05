@@ -54,15 +54,18 @@ p {
 button {
     background-color: #ff69b4;
     color: white;
-    border: none;
+    border: 3px solid #ff1493;
     padding: 10px 20px;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Include transform in the transition */
 }
 
 button:hover {
-    background-color: #ff1493;
+    background-color: #fd36a0;
+    border: 3px solid #fa91c6;
+    transform: translateX(6px);
 }
 
 .heart-gif {
