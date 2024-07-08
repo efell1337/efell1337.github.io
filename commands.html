@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slashed Bot Commands</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .header h1 {
+            color: #7e0000;
+        }
+        .command {
+            background-color: #1e1e1e;
+            border: 3px solid #333;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .command:hover {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid #1e1e1e
+        }
+        .command-name {
+            font-size: 1.5em;
+            color: #7e0000;
+        }
+        .command-description {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #bdbdbd;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #757575;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bot Commands</h1>
+        </div>
+        <!-- Example Command -->
+        <div class="command">
+            <div class="command-name">ss help</div>
+            <div class="command-description">Displays a list of all commands.</div>
+        </div>
+        <!-- Add more commands here -->
+        <div class="command">
+            <div class="command-name">ss play [song]</div>
+            <div class="command-description">Plays a song from YouTube.</div>
+        </div>
+        <div class="command">
+            <div class="command-name">ss pause</div>
+            <div class="command-description">Pauses the current song.</div>
+        </div>
+        <div class="command">
+            <div class="command-name">ss resume</div>
+            <div class="command-description">Resumes the current song.</div>
+        </div>
+        <div class="command">
+            <div class="command-name">ss stop</div>
+            <div class="command-description">Stops the current song and clears the queue.</div>
+        </div>
+        <div class="footer">
+            &copy; 2024 Slashed
+        </div>
+    </div>
+</body>
+</html>
