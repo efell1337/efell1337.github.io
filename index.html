@@ -3,47 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>| Slashed |</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Coming Soon</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        body, html {
+            height: 100%;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            background-color: #121212; /* Dark background */
+            align-items: center;
+            color: #333;
         }
         .container {
             text-align: center;
-            color: #ffffff; /* Light text color for contrast */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; /* Space between content and button */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        .button {
-            background-color: #555555;
-            color: #ffffff; /* Light button text */
-            border: 3px solid rgba(114, 114, 114, 0.9); /* Button border */
-            border-radius: 5px;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            cursor: pointer;
+        .container:hover {
+            transform: scale(1.05);
         }
-        .button:hover {
-            background-color: rgba(143, 142, 142, 0.9);
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .loading {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .loading div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #333;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .loading div:nth-child(1) {
+            left: 8px;
+            animation: loading1 0.6s infinite;
+        }
+        .loading div:nth-child(2) {
+            left: 8px;
+            animation: loading2 0.6s infinite;
+        }
+        .loading div:nth-child(3) {
+            left: 32px;
+            animation: loading2 0.6s infinite;
+        }
+        .loading div:nth-child(4) {
+            left: 56px;
+            animation: loading3 0.6s infinite;
+        }
+        @keyframes loading1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        @keyframes loading3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        @keyframes loading2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <p>This Domain Is Owned By Efel, And is Used For Examples In Code.</p>
-        <a href="anne.html" class="button">Bana Tıkla!</a>
+        <h1>Coming Soon</h1>
+        <p>We're working hard to bring you something amazing.</p>
+        <div class="loading">
+            <div></div><div></div><div></div><div></div>
+        </div>
     </div>
 </body>
 </html>
