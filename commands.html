@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slashed Bot Commands</title>
+    <title>Slashed Bot - Commands and Versions</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -79,12 +79,21 @@
             background-color: var(--primary-color);
             color: var(--bg-color);
         }
-        .commands-grid {
+        .commands-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .commands-grid,
+        .versions-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
+            opacity: 1;
+            transition: opacity 0.5s;
         }
-        .command-card {
+        .command-card,
+        .version-card {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border-color);
             border-radius: 15px;
@@ -92,7 +101,8 @@
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             backdrop-filter: blur(10px);
         }
-        .command-card:hover {
+        .command-card:hover,
+        .version-card:hover {
             transform: translateY(-5px);
             background-color: var(--card-hover-bg);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -102,15 +112,24 @@
             color: var(--primary-color);
             margin-bottom: 10px;
         }
-        .command-name {
+        .command-name,
+        .version-name {
             font-size: 1.2em;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .command-description {
+        .command-description,
+        .version-changes {
             font-size: 0.9em;
             color: #bdbdbd;
             line-height: 1.5;
+        }
+        .version-changes ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        .version-changes li {
+            margin-bottom: 10px;
         }
         .footer {
             text-align: center;
@@ -122,9 +141,27 @@
             .header h1 {
                 font-size: 2.5em;
             }
-            .commands-grid {
+            .commands-grid,
+            .versions-grid {
                 grid-template-columns: 1fr;
             }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .command-card,
+        .version-card {
+            animation: fadeIn 0.5s ease-in-out forwards;
+            opacity: 0;
+        }
+        .commands-grid .command-card,
+        .versions-grid .version-card {
+            animation: fadeIn 0.5s ease-in-out forwards;
         }
     </style>
 </head>
@@ -132,37 +169,60 @@
     <canvas id="background-canvas"></canvas>
     <div class="container">
         <div class="header">
-            <h1>Slashed Bot Commands</h1>
-            <p>Explore our features and commands</p>
+            <h1>Slashed Bot</h1>
+            <p>Explore our features, commands, and versions</p>
         </div>
         
         <div class="tabs">
-            <button class="tab active" onclick="showCategory('all')">All</button>
-            <button class="tab" onclick="showCategory('moderation')">Moderation</button>
-            <button class="tab" onclick="showCategory('fun')">Fun</button>
-            <button class="tab" onclick="showCategory('misc')">Misc</button>
+            <button class="tab active" onclick="showSection('commands')">Commands</button>
+            <button class="tab" onclick="showSection('versions')">Versions</button>
         </div>
 
-        <div class="commands-grid">
-            <div class="command-card" data-category="misc">
-                <div class="command-icon"><i class="fas fa-question-circle"></i></div>
-                <div class="command-name">ss help</div>
-                <div class="command-description">Sends an embed that'll redirect you to this page.</div>
+        <div id="commands-section">
+            <div class="commands-tabs">
+                <button class="tab active" onclick="showCommandCategory('all')">All</button>
+                <button class="tab" onclick="showCommandCategory('moderation')">Moderation</button>
+                <button class="tab" onclick="showCommandCategory('fun')">Fun</button>
+                <button class="tab" onclick="showCommandCategory('misc')">Misc</button>
             </div>
-            
-            <div class="command-card" data-category="moderation">
-                <div class="command-icon"><i class="fas fa-database"></i></div>
-                <div class="command-name">ss setstorage [channel-id]</div>
-                <div class="command-description">Sets the channel to send attachments to.</div>
-            </div>
-            
-            <div class="command-card" data-category="moderation">
-                <div class="command-icon"><i class="fas fa-history"></i></div>
-                <div class="command-name">ss logs [member] [edited/deleted/msg]</div>
-                <div class="command-description">Displays all logged messages for the user.</div>
-            </div>
+            <div id="commands-grid" class="commands-grid">
+                <div class="command-card" data-category="misc">
+                    <div class="command-icon"><i class="fas fa-question-circle"></i></div>
+                    <div class="command-name">ss help</div>
+                    <div class="command-description">Sends an embed that'll redirect you to this page.</div>
+                </div>
+                
+                <div class="command-card" data-category="moderation">
+                    <div class="command-icon"><i class="fas fa-database"></i></div>
+                    <div class="command-name">ss setstorage [channel-id]</div>
+                    <div class="command-description">Sets the channel to send attachments to.</div>
+                </div>
+                
+                <div class="command-card" data-category="moderation">
+                    <div class="command-icon"><i class="fas fa-history"></i></div>
+                    <div class="command-name">ss logs [member] [edited/deleted/msg]</div>
+                    <div class="command-description">Displays all logged messages for the user.</div>
+                </div>
 
-            <!-- Add more command cards here -->
+                <!-- Add more command cards here -->
+            </div>
+        </div>
+
+        <div id="versions-section" style="display: none; opacity: 0;">
+            <div class="versions-grid">
+                <div class="version-card">
+                    <div class="version-name">Version 1.0.0</div>
+                    <div class="version-changes">
+                        <ul>
+                            <li>Launched Slashed! 🥳</li>
+                            <li>Improved logging for deleted/edited messages</li>
+                            <li>Fixed several bug issues</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Add more version cards here -->
+            </div>
         </div>
 
         <div class="footer">
@@ -239,21 +299,62 @@
 
         init();
 
-        function showCategory(category) {
-            const cards = document.querySelectorAll('.command-card');
-            const tabs = document.querySelectorAll('.tab');
+        function showSection(section) {
+            const commandsSection = document.getElementById('commands-section');
+            const versionsSection = document.getElementById('versions-section');
+            const tabs = document.querySelectorAll('.tabs .tab');
+            const commandCards = document.querySelectorAll('.command-card');
+            const versionCards = document.querySelectorAll('.version-card');
 
             tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
+            document.querySelector(`.tabs .tab[onclick="showSection('${section}')"]`).classList.add('active');
 
-            cards.forEach(card => {
+            if (section === 'commands') {
+                commandsSection.style.display = 'block';
+                versionsSection.style.display = 'none';
+                commandsSection.style.opacity = '1';
+                versionsSection.style.opacity = '0';
+                commandCards.forEach(card => {
+                    card.style.opacity = '1';
+                });
+                versionCards.forEach(card => {
+                    card.style.opacity = '0';
+                });
+            } else if (section === 'versions') {
+                commandsSection.style.display = 'none';
+                versionsSection.style.display = 'block';
+                commandsSection.style.opacity = '0';
+                versionsSection.style.opacity = '1';
+                commandCards.forEach(card => {
+                    card.style.opacity = '0';
+                });
+                versionCards.forEach(card => {
+                    card.style.opacity = '1';
+                });
+            }
+        }
+
+        function showCommandCategory(category) {
+            const cards = document.querySelectorAll('.command-card');
+            const tabs = document.querySelectorAll('.commands-tabs .tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.commands-tabs .tab[onclick="showCommandCategory('${category}')"]`).classList.add('active');
+
+            cards.forEach((card, index) => {
                 if (category === 'all' || card.dataset.category === category) {
                     card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.2s ease-in-out forwards';
+                    card.style.animationDelay = `${index * 0.1}s`;
                 } else {
                     card.style.display = 'none';
+                    card.style.animation = 'none';
                 }
             });
         }
+
+        // Set default tab to 'commands' on page load
+        showSection('commands');
     </script>
 </body>
 </html>
