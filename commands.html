@@ -4,56 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slashed Bot Commands</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #4fc3f7;
+            --bg-color: #0a1929;
+            --text-color: #e0e0e0;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
         body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
+            min-height: 100vh;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 40px 20px;
         }
         .header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
         .header h1 {
-            color: #7e0000;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
-        .command {
-            background-color: #1e1e1e;
-            border: 3px solid #333;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .tab {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        .tab.active {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+        }
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .command-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
             padding: 20px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .command:hover {
-            background-color: #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border: 3px solid #1e1e1e
+        .command-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .command-icon {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
         .command-name {
-            font-size: 1.5em;
-            color: #7e0000;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         .command-description {
-            margin-top: 10px;
-            font-size: 1.2em;
+            font-size: 0.9em;
             color: #bdbdbd;
         }
         .footer {
             text-align: center;
             margin-top: 50px;
             color: #757575;
+            font-size: 0.9em;
         }
         @media (max-width: 768px) {
-            .container {
-                width: 95%;
+            .commands-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -62,24 +101,59 @@
     <div class="container">
         <div class="header">
             <h1>Slashed Bot Commands</h1>
+            <p>Explore our features and commands</p>
         </div>
-        <!-- Example Command -->
-        <div class="command">
-            <div class="command-name">ss help</div>
-            <div class="command-description">Sends a embed that'll redirect you to this page.</div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showCategory('all')">All</button>
+            <button class="tab" onclick="showCategory('moderation')">Moderation</button>
+            <button class="tab" onclick="showCategory('fun')">Fun</button>
+            <button class="tab" onclick="showCategory('misc')">Misc</button>
         </div>
-        <!-- Add more commands here -->
-        <div class="command">
-            <div class="command-name">ss setstorage [channel-id]</div>
-            <div class="command-description">Sets the channel to send attachments to.</div>
+
+        <div class="commands-grid">
+            <div class="command-card" data-category="misc">
+                <div class="command-icon"><i class="fas fa-question-circle"></i></div>
+                <div class="command-name">ss help</div>
+                <div class="command-description">Sends an embed that'll redirect you to this page.</div>
+            </div>
+            
+            <div class="command-card" data-category="moderation">
+                <div class="command-icon"><i class="fas fa-database"></i></div>
+                <div class="command-name">ss setstorage [channel-id]</div>
+                <div class="command-description">Sets the channel to send attachments to.</div>
+            </div>
+            
+            <div class="command-card" data-category="moderation">
+                <div class="command-icon"><i class="fas fa-history"></i></div>
+                <div class="command-name">ss logs [member] [edited/deleted/msg]</div>
+                <div class="command-description">Displays all logged messages for the user.</div>
+            </div>
+
+            <!-- Add more command cards here -->
         </div>
-        <div class="command">
-            <div class="command-name">ss logs [member] [edited/deleted/msg]</div>
-            <div class="command-description">Displays all logged messages for the user.</div>
-        </div>
+
         <div class="footer">
-            &copy; 2024 Slashed
+            &copy; 2024 Slashed | Enhancing Discord experiences
         </div>
     </div>
+
+    <script>
+        function showCategory(category) {
+            const cards = document.querySelectorAll('.command-card');
+            const tabs = document.querySelectorAll('.tab');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
