@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+      overflow: hidden;
+    }
+
+    .background-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(100% + 200px);
+      height: calc(100% + 200px);
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      opacity: 0.3;
+      filter: blur(10px);
+      overflow: hidden;
+    }
+
+    .background-video video {
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+    }
+
+    .container {
+      position: relative;
+      width: 600px;
+      height: 300px;
+      background-color: rgba(50, 50, 50, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, padding 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .container:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      padding: 15px;
+      z-index: 1;
+    }
+
+    .container:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 1;
+    }
+
+    .container:hover:before {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .profile-picture {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-image: url('pfp.png');
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .profile-picture::before {
+      content: "Efel.";
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 5px 10px;
+      background-color: rgba(50, 50, 50, 0.8);
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .profile-picture:hover::before {
+      opacity: 1;
+    }
+
+    .profile-picture:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .content {
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    .content h2 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .social-icons {
+      position: absolute;
+      bottom: 30px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: #fff;
+      font-size: 24px;
+      transition: color 0.3s, transform 0.3s;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-icons a:hover {
+      color: #ddd;
+      transform: scale(1.2);
+    }
+
+    .snow {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: fall linear infinite;
+    opacity: 0;
+    }
+
+    @keyframes fall {
+    0% {
+      transform: translateY(-100vh); 
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh); 
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="background-video">
+    <video autoplay loop muted>
+      <source src="car.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="container">
+    <div class="profile-picture"></div>
+    <div class="content">
+      <h2>#1 CS 1.6 Enjoyer</h2>
+      <p>Stalking? socials linked below.</p>
+    </div>
+    <div class="social-icons">
+      <a href="https://discord.com/users/757335355644051656" class="discord"><i class="fab fa-discord"></i></a>
+      <a href="https://tr.pinterest.com/efelpy" class="pinterest"><i class="fab fa-pinterest"></i></a>
+      <a href="https://www.tiktok.com/@efel_tappin" class="tiktok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/efel.py" class="instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+  <script>
+    function createSnow() {
+      const container = document.body;
+      const snowCount = 100; // You can increase this number if needed
+  
+      for (let i = 0; i < snowCount; i++) {
+        const snow = document.createElement('div');
+        snow.classList.add('snow');
+  
+        // Randomize each snowflake's position, size, and animation duration
+        snow.style.left = `${Math.random() * 100}vw`; // Start at a random horizontal position
+        snow.style.width = `${Math.random() * 8 + 2}px`; // Random size between 2px and 10px
+        snow.style.height = snow.style.width;
+        snow.style.animationDuration = `${Math.random() * 5 + 5}s`; // Random fall speed between 5 and 10 seconds
+        snow.style.animationTimingFunction = 'linear';
+        snow.style.animationDelay = `${Math.random() * 5}s`; // Random delay to spread out the snowflakes
+  
+        container.appendChild(snow);
+      }
+    }
+  
+    createSnow();
+  </script>
+</body>
+</html>
