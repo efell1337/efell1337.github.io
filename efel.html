@@ -269,10 +269,6 @@
   <div id="overlay">
     <button id="continue-btn">Continue</button>
   </div>
-  <div class="background-video">
-<video autoplay loop>
-  <source src="car.mp4" type="video/mp4">
-</video>
   </div>
   <div class="container">
     <div class="profile-picture"></div>
@@ -286,6 +282,12 @@
       <a href="https://www.tiktok.com/@efel_tappin" class="tiktok"><i class="fab fa-tiktok"></i></a>
       <a href="https://www.instagram.com/efel.py" class="instagram"><i class="fab fa-instagram"></i></a>
     </div>
+  </div>
+
+  <div class="background-video">
+    <video id="backgroundVideo" loop>
+      <source src="car.mp4" type="video/mp4">
+    </video>
   </div>
 
   <div class="volume-control" style="bottom: 220px;"> <!-- Positioned 200px lower -->
@@ -342,12 +344,16 @@
   }
   setInterval(changeTitle, 500); // Change every 2 seconds
 
-    document.getElementById('overlay').addEventListener('click', function() {
-    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('continue-btn').addEventListener('click', function() {
+      document.getElementById('overlay').style.display = 'none';
+      const video = document.getElementById('backgroundVideo');
+      video.play();  // Play the video after clicking the continue button
     });
 
-    document.getElementById('continue-btn').addEventListener('click', function() {
-    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('overlay').addEventListener('click', function() {
+      document.getElementById('overlay').style.display = 'none';
+      const video = document.getElementById('backgroundVideo');
+      video.play();  // Play the video after clicking anywhere on the overlay
     });
 
     const volumeSlider = document.getElementById('volumeSlider');
