@@ -60,7 +60,9 @@
       padding: 20px;
       z-index: 1;
     }
-
+    * {
+  transition: all 0.3s ease-in-out;
+}
     .container:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
@@ -192,9 +194,10 @@
       animation: glow 2s ease-in-out infinite alternate;
     }
 
-    .volume-control {
+/* Container for volume control */
+.volume-control {
   position: fixed;
-  bottom: 20px;
+  bottom: 20px; /* Change this from 220px to 20px */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -203,35 +206,36 @@
   padding: 10px 20px;
   border-radius: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 245px; /* Increased width */
+  width: 300px;
   justify-content: space-between;
-  z-index: 10; /* Ensure it's always on top */
+  transition: transform 0.3s ease, bottom 0.3s ease; /* Add bottom to the transition */
+  z-index: 10;
 }
-
-* {
-  transition: all 0.3s ease-in-out;
-}
-
-.custom-cursor.expand {
-  transform: scale(1.5) translate(-50%, -50%);
-  opacity: 0.5;
-}
-
+/* Icon within the volume control */
 .volume-icon {
   color: #c0d8e4;
   font-size: 24px;
   margin-right: 10px;
 }
 
+/* Styling for the volume slider container */
+.volume-slider-container {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Ensure it takes up remaining space */
+}
+
+/* Styling for the volume slider */
 .volume-slider {
   -webkit-appearance: none;
-  width: 200px; /* Increased width */
+  width: 100%; /* Ensure it takes up available space within its container */
   height: 5px;
   border-radius: 5px;
   background: #4d4d4d;
   outline: none;
   opacity: 0.7;
   transition: opacity .2s;
+  margin-right: 10px; /* Space between slider and other elements if needed */
 }
 
 .volume-slider:hover {
@@ -252,8 +256,40 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #13384b;
+  background: #c0d8e4;
   cursor: pointer;
+}
+
+
+.container {
+  transition: transform 0.3s ease;
+}
+
+.about-me-container {
+  position: absolute;
+  top: calc(50% + 150px); /* Adjust this value if needed */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  color: #c0d8e4;
+  font-size: 14px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 2;
+  display: none;
+}
+
+
+.about-me-container.show {
+  opacity: 1;
+  display: block;
 }
 
 @keyframes typing {
@@ -303,7 +339,14 @@
       <a href="https://tr.pinterest.com/efelpy" class="pinterest"><i class="fab fa-pinterest"></i></a>
       <a href="https://www.tiktok.com/@efel_tappin" class="tiktok"><i class="fab fa-tiktok"></i></a>
       <a href="https://www.instagram.com/efel.py" class="instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="info-icon" id="infoIcon"><i class="fas fa-question-circle"></i></a>
     </div>
+  </div>
+
+  <div class="about-me-container" style="display: none;">
+    <p>Quite the curious one you are.</p>
+    <p>The names Efel, 15 years old. I enjoy coding, reading, and playing video games. Im turkish!</p>
+    <p></p>
   </div>
 
   <div class="background-video">
@@ -397,25 +440,31 @@
         volumeIcon.className = 'fas fa-volume-mute volume-icon';
       }
     }
-    const cursor = document.querySelector('.custom-cursor');
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.top = `${e.pageY}px`;
-  cursor.style.left = `${e.pageX}px`;
-});
-
-document.addEventListener('click', () => {
-  cursor.classList.add("expand");
-  setTimeout(() => cursor.classList.remove("expand"), 500);
-});
-const darkModeToggle = document.getElementById('darkModeToggle');
-darkModeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-});
-window.addEventListener('load', () => {
-  const loadingScreen = document.getElementById('loading-screen');
-  loadingScreen.style.opacity = '0';
-  setTimeout(() => loadingScreen.style.display = 'none', 300); // Smooth fade out
+    document.getElementById('infoIcon').addEventListener('click', function(e) {
+  e.preventDefault();
+  const container = document.querySelector('.container');
+  const aboutMeContainer = document.querySelector('.about-me-container');
+  const volumeControl = document.querySelector('.volume-control');
+  
+  // Store the original position of the volume control
+  const originalPosition = '220px'; // This should match the initial bottom value in your CSS
+  
+  if (aboutMeContainer.style.display === 'none') {
+    container.style.transform = 'translateY(-80px)';
+    aboutMeContainer.style.display = 'block';
+    volumeControl.style.bottom = `${aboutMeContainer.offsetHeight + 20}px`; // Position below About Me
+    setTimeout(() => {
+      aboutMeContainer.classList.add('show');
+    }, 50);
+  } else {
+    container.style.transform = 'translateY(0)';
+    volumeControl.style.bottom = originalPosition; // Return to original position
+    aboutMeContainer.classList.remove('show');
+    setTimeout(() => {
+      aboutMeContainer.style.display = 'none';
+    }, 300);
+  }
 });
 
   </script
