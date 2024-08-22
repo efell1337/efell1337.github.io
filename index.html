@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #0a1929;
+            background-color: #121212;
             color: #e0e0e0;
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -40,18 +40,18 @@
         }
 
         .header h1 {
-            color: #4fc3f7;
+            color: #bfd1e0;
             font-size: 4em;
-            text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+            text-shadow: 0 0 10px rgba(30, 136, 229, 0.5);
             animation: glow 2s ease-in-out infinite;
         }
 
         @keyframes glow {
             0%, 100% {
-                text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+                text-shadow: 0 0 10px rgba(30, 136, 229, 0.5);
             }
             50% {
-                text-shadow: 0 0 20px rgba(79, 195, 247, 0.8);
+                text-shadow: 0 0 20px rgba(134, 151, 250, 0.8);
             }
         }
 
@@ -62,18 +62,18 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 15px 30px;
-            color: #4fc3f7;
+            color: #accdeb;
             text-decoration: none;
             font-size: 1.2em;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             animation: bounce 1s ease-in-out infinite;
             margin: 10px;
         }
 
         .call-to-action:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
             background-color: rgba(255, 255, 255, 0.15);
         }
 
@@ -92,17 +92,17 @@
             padding: 20px;
             width: 300px;
             margin: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
 
         .feature:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
         }
 
         .feature h3 {
-            color: #4fc3f7;
+            color: #b0bada;
             margin-bottom: 10px;
         }
 
@@ -135,7 +135,7 @@
             <h1>Slashed Bot</h1>
         </div>
         <a href="commands.html" class="call-to-action">View Commands</a>
-        </a>
+        <a href="efel.html" class="call-to-action">View Biography</a>
         <div class="features">
             <div class="feature">
                 <h3>Moderation</h3>
@@ -195,7 +195,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
-                ctx.fillStyle = '#4fc3f7';
+                ctx.fillStyle = '#dde5ed';
                 ctx.fill();
             }
         }

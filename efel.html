@@ -60,15 +60,6 @@
       padding: 20px;
       z-index: 1;
     }
-    
-    body.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-body.dark-mode .container {
-  background: rgba(30, 30, 30, 0.9);
-}
 
     .container:hover {
       transform: scale(1.05);
@@ -111,12 +102,12 @@ body.dark-mode .container {
     .profile-picture::before {
       content: "Efel.";
       position: absolute;
-      top: -50px;
+      top: -45px;
       left: 50%;
       transform: translateX(-50%);
       padding: 5px 10px;
       background-color: rgba(50, 50, 50, 0.8);
-      border: 1px solid #333;
+      border: 1px solid #202020;
       border-radius: 5px;
       color: #fff;
       font-size: 14px;
@@ -136,7 +127,7 @@ body.dark-mode .container {
     }
 
     .content {
-      color: #fff;
+      color: #c0d8e4;
       font-size: 14px;
       text-align: center;
       text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -157,22 +148,22 @@ body.dark-mode .container {
     }
 
     .social-icons a {
-      color: #fff;
+      color: #c0d8e4;
       font-size: 24px;
       transition: color 0.3s, transform 0.3s;
       text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
     .social-icons a:hover {
-      color: #ddd;
+      color: #c0d8e4;
       transform: scale(1.2);
     }
 
     .snow {
     position: absolute;
-    background-color: #fff;
+    background-color: #c0d8e4;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px#c0d8e4;
     animation: fall linear infinite;
     opacity: 0;
     }
@@ -192,7 +183,7 @@ body.dark-mode .container {
     }
     #continue-btn {
       font-size: 3rem;
-      color: white;
+      color: rgb(221, 237, 248);
       text-transform: none;
       background: none;
       border: none;
@@ -221,25 +212,13 @@ body.dark-mode .container {
   transition: all 0.3s ease-in-out;
 }
 
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid white;
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.15s ease, opacity 0.2s ease;
-}
-
 .custom-cursor.expand {
   transform: scale(1.5) translate(-50%, -50%);
   opacity: 0.5;
 }
 
 .volume-icon {
-  color: #fff;
+  color: #c0d8e4;
   font-size: 24px;
   margin-right: 10px;
 }
@@ -265,7 +244,7 @@ body.dark-mode .container {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #c0d8e4;
   cursor: pointer;
 }
 
@@ -273,16 +252,8 @@ body.dark-mode .container {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #13384b;
   cursor: pointer;
-}
-.animated-text {
-  overflow: hidden;
-  border-right: .15em solid orange;
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: .15em;
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
@@ -297,10 +268,10 @@ body.dark-mode .container {
 
     @keyframes glow {
       from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
+        text-shadow: 0 0 5px #c0d8e4, 0 0 10px #c0d8e4, 0 0 15px #c0d8e4, 0 0 20px #c0d8e4;
       }
       to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
+        text-shadow: 0 0 10px #c0d8e4, 0 0 20px #c0d8e4, 0 0 30px #c0d8e4, 0 0 40px #c0d8e4;
       }
     }
 
