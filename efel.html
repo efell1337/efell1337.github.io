@@ -9,8 +9,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+
+               <!-- For who ever the fuck is using this, good luck soldier idek what the fuck i wrote or how it works-->
+
     body {
-      
       display: flex;
       justify-content: center;
       align-items: center;
@@ -194,10 +196,9 @@
       animation: glow 2s ease-in-out infinite alternate;
     }
 
-/* Container for volume control */
 .volume-control {
   position: fixed;
-  bottom: 20px; /* Change this from 220px to 20px */
+  bottom: 20px; 
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -208,34 +209,33 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 300px;
   justify-content: space-between;
-  transition: transform 0.3s ease, bottom 0.3s ease; /* Add bottom to the transition */
+  transition: transform 0.3s ease, bottom 0.3s ease;
   z-index: 10;
 }
-/* Icon within the volume control */
+
 .volume-icon {
   color: #c0d8e4;
   font-size: 24px;
   margin-right: 10px;
 }
 
-/* Styling for the volume slider container */
 .volume-slider-container {
   display: flex;
   align-items: center;
-  flex: 1; /* Ensure it takes up remaining space */
+  flex: 1; 
 }
 
-/* Styling for the volume slider */
+
 .volume-slider {
   -webkit-appearance: none;
-  width: 100%; /* Ensure it takes up available space within its container */
+  width: 100%; 
   height: 5px;
   border-radius: 5px;
   background: #4d4d4d;
   outline: none;
   opacity: 0.7;
   transition: opacity .2s;
-  margin-right: 10px; /* Space between slider and other elements if needed */
+  margin-right: 10px; 
 }
 
 .volume-slider:hover {
@@ -369,13 +369,13 @@
         const snow = document.createElement('div');
         snow.classList.add('snow');
   
-        // Randomize each snowflake's position, size, and animation duration
-        snow.style.left = `${Math.random() * 100}vw`; // Start at a random horizontal position
-        snow.style.width = `${Math.random() * 8 + 2}px`; // Random size between 2px and 10px
+        // shit i think this is for randomizing each snowflake's position, size, and animation duration
+        snow.style.left = `${Math.random() * 100}vw`; 
+        snow.style.width = `${Math.random() * 8 + 2}px`; 
         snow.style.height = snow.style.width;
-        snow.style.animationDuration = `${Math.random() * 5 + 5}s`; // Random fall speed between 5 and 10 seconds
+        snow.style.animationDuration = `${Math.random() * 5 + 5}s`; 
         snow.style.animationTimingFunction = 'linear';
-        snow.style.animationDelay = `${Math.random() * 5}s`; // Random delay to spread out the snowflakes
+        snow.style.animationDelay = `${Math.random() * 5}s`; 
   
         container.appendChild(snow);
       }
@@ -405,20 +405,20 @@
 
   function changeTitle() {
     document.title = titles[currentIndex];
-    currentIndex = (currentIndex + 1) % titles.length; // Loop back to the start
+    currentIndex = (currentIndex + 1) % titles.length; 
   }
-  setInterval(changeTitle, 500); // Change every 2 seconds
+  setInterval(changeTitle, 500); 
 
     document.getElementById('continue-btn').addEventListener('click', function() {
       document.getElementById('overlay').style.display = 'none';
       const video = document.getElementById('backgroundVideo');
-      video.play();  // Play the video after clicking the continue button
+      video.play();
     });
 
     document.getElementById('overlay').addEventListener('click', function() {
       document.getElementById('overlay').style.display = 'none';
       const video = document.getElementById('backgroundVideo');
-      video.play();  // Play the video after clicking anywhere on the overlay
+      video.play();
     });
 
     const volumeSlider = document.getElementById('volumeSlider');
@@ -446,9 +446,7 @@
   const container = document.querySelector('.container');
   const aboutMeContainer = document.querySelector('.about-me-container');
   const volumeControl = document.querySelector('.volume-control');
-  
-  // Store the original position of the volume control
-  const originalPosition = '220px'; // This should match the initial bottom value in your CSS
+  const originalPosition = '220px';
   
   if (aboutMeContainer.style.display === 'none') {
     container.style.transform = 'translateY(-60px)';
