@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyss - Terms of Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #cccccc;
+            --glow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .dark-mode {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --border-color: #444444;
+            --glow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px var(--glow-color);
+            text-align: center; /* Center the text inside the container */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--text-color);
+            transition: transform 0.3s;
+        }
+
+        .toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #languageToggle {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: var(--border-color);
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+        }
+
+        .term {
+            margin-bottom: 30px;
+            text-align: center; /* Optional: Keep term content left-aligned */
+        }
+
+        .term h2 {
+            margin-bottom: 10px;
+        }
+
+        .term p {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+<body>
+    <div class="container">
+        <div class="toggle-container">
+            <button id="darkModeToggle" class="toggle-btn">
+                <i class="fas fa-sun"></i>
+            </button>
+            <select id="languageToggle">
+                <option value="en">English</option>
+                <option value="tr">Türkçe</option>
+            </select>
+        </div>
+        <h1>Abyss - Terms of Service</h1>
+        <div id="tosContent">
+            <div class="term">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using any products or services provided by Abyss ("Company"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access or use our products or services.</p>
+            </div>
+
+            <div class="term">
+                <h2>2. Description of Service</h2>
+                <p>Abyss provides tools and products for educational purposes only. These tools are not intended for any illegal, harmful, or malicious activities.</p>
+            </div>
+
+            <div class="term">
+                <h2>3. Disclaimer of Liability</h2>
+                <p>The Company, Abyss, and its owner, Efel, shall not be held liable for any damages, losses, or legal issues arising from the use or misuse of our products. By using our products, you acknowledge and agree that you are solely responsible for your actions and any consequences that may result from using our tools.</p>
+            </div>
+
+            <div class="term">
+                <h2>4. Educational Purpose Only</h2>
+                <p>All products and tools provided by Abyss are strictly for educational purposes. Users are prohibited from using these tools for any illegal, unethical, or harmful activities. The Company does not endorse, encourage, or support any misuse of its products.</p>
+            </div>
+
+            <div class="term">
+                <h2>5. No Warranty</h2>
+                <p>The products and services are provided "as is" without any warranty, express or implied. The Company does not guarantee the accuracy, completeness, or usefulness of any information or product provided.</p>
+            </div>
+
+            <div class="term">
+                <h2>6. User Responsibilities</h2>
+                <p>Users are solely responsible for their use of Abyss products. By using our services, you agree to indemnify, defend, and hold harmless the Company, its owner, employees, and affiliates from any claims, liabilities, damages, losses, and expenses arising from your use of our products.</p>
+            </div>
+
+            <div class="term">
+                <h2>7. Modifications to Terms</h2>
+                <p>The Company reserves the right to modify these Terms at any time without prior notice. Your continued use of our products after any changes to the Terms constitutes your acceptance of such changes.</p>
+            </div>
+
+            <div class="term">
+                <h2>8. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of the judicial system of Turkey, without regard to its conflict of law provisions.</p>
+            </div>
+
+            <div class="term">
+                <h2>9. Contact Information</h2>
+                <p>If you have any questions about these Terms, please contact us at nashxefel06@gmail.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        const languageToggle = document.getElementById('languageToggle');
+        const tosContent = document.getElementById('tosContent');
+
+        let isDarkMode = false;
+
+        darkModeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            body.classList.toggle('dark-mode', isDarkMode);
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        });
+
+        const translations = {
+            en: {
+                title: "Abyss - Terms of Service",
+                content: `
+                    <div class="term">
+                        <h2>1. Acceptance of Terms</h2>
+                        <p>By accessing or using any products or services provided by Abyss ("Company"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of the terms, you may not access or use our products or services.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>2. Description of Service</h2>
+                        <p>Abyss provides tools and products for educational purposes only. These tools are not intended for any illegal, harmful, or malicious activities.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>3. Disclaimer of Liability</h2>
+                        <p>The Company, Abyss, and its owner, Efel, shall not be held liable for any damages, losses, or legal issues arising from the use or misuse of our products. By using our products, you acknowledge and agree that you are solely responsible for your actions and any consequences that may result from using our tools.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>4. Educational Purpose Only</h2>
+                        <p>All products and tools provided by Abyss are strictly for educational purposes. Users are prohibited from using these tools for any illegal, unethical, or harmful activities. The Company does not endorse, encourage, or support any misuse of its products.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>5. No Warranty</h2>
+                        <p>The products and services are provided "as is" without any warranty, express or implied. The Company does not guarantee the accuracy, completeness, or usefulness of any information or product provided.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>6. User Responsibilities</h2>
+                        <p>Users are solely responsible for their use of Abyss products. By using our services, you agree to indemnify, defend, and hold harmless the Company, its owner, employees, and affiliates from any claims, liabilities, damages, losses, and expenses arising from your use of our products.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>7. Modifications to Terms</h2>
+                        <p>The Company reserves the right to modify these Terms at any time without prior notice. Your continued use of our products after any changes to the Terms constitutes your acceptance of such changes.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>8. Governing Law</h2>
+                        <p>These Terms shall be governed by and construed in accordance with the laws of the judicial system of Turkey, without regard to its conflict of law provisions.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>9. Contact Information</h2>
+                        <p>If you have any questions about these Terms, please contact us at nashxefel06@gmail.com.</p>
+                    </div>
+                `
+            },
+            tr: {
+                title: "Abyss - Hizmet Şartları",
+                content: `
+                    <div class="term">
+                        <h2>1. Şartların Kabulü</h2>
+                        <p>Abyss ("Şirket") tarafından sağlanan herhangi bir ürün veya hizmete erişerek veya bunları kullanarak, bu Hizmet Şartları'na ("Şartlar") bağlı kalmayı kabul edersiniz. Şartların herhangi bir kısmına katılmıyorsanız, ürünlerimize veya hizmetlerimize erişemez veya kullanamazsınız.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>2. Hizmet Tanımı</h2>
+                        <p>Abyss, yalnızca eğitim amaçlı araçlar ve ürünler sağlar. Bu araçlar, herhangi bir yasa dışı, zararlı veya kötü niyetli faaliyet için tasarlanmamıştır.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>3. Sorumluluk Reddi</h2>
+                        <p>Şirket Abyss ve sahibi Efel, ürünlerimizin kullanımından veya yanlış kullanımından kaynaklanan herhangi bir zarar, kayıp veya yasal sorundan sorumlu tutulamaz. Ürünlerimizi kullanarak, eylemlerinizden ve araçlarımızı kullanmanızdan kaynaklanabilecek sonuçlardan yalnızca sizin sorumlu olduğunuzu kabul ve beyan edersiniz.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>4. Yalnızca Eğitim Amaçlı</h2>
+                        <p>Abyss tarafından sağlanan tüm ürünler ve araçlar kesinlikle eğitim amaçlıdır. Kullanıcıların bu araçları yasa dışı, etik olmayan veya zararlı faaliyetler için kullanması yasaktır. Şirket, ürünlerinin herhangi bir yanlış kullanımını desteklemez, teşvik etmez veya onaylamaz.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>5. Garanti Yok</h2>
+                        <p>Ürünler ve hizmetler, açık veya zımni herhangi bir garanti olmaksızın "olduğu gibi" sağlanır. Şirket, sağlanan herhangi bir bilginin veya ürünün doğruluğunu, eksiksizliğini veya kullanışlılığını garanti etmez.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>6. Kullanıcı Sorumlulukları</h2>
+                        <p>Kullanıcılar, Abyss ürünlerini kullanımlarından tek başına sorumludur. Hizmetlerimizi kullanarak, ürünlerimizi kullanımınızdan kaynaklanan herhangi bir iddia, yükümlülük, zarar, kayıp ve masraftan Şirketi, sahibini, çalışanlarını ve bağlı kuruluşlarını tazmin etmeyi, savunmayı ve zarar görmesini önlemeyi kabul edersiniz.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>7. Şartlarda Değişiklikler</h2>
+                        <p>Şirket, bu Şartları önceden bildirimde bulunmaksızın herhangi bir zamanda değiştirme hakkını saklı tutar. Şartlardaki herhangi bir değişiklikten sonra ürünlerimizi kullanmaya devam etmeniz, bu değişiklikleri kabul ettiğiniz anlamına gelir.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>8. Geçerli Hukuk</h2>
+                        <p>Bu Şartlar, Türkiyenin kanunlarına göre yönetilecek ve yorumlanacaktır, kanunlar ihtilafı hükümleri dikkate alınmaksızın.</p>
+                    </div>
+
+                    <div class="term">
+                        <h2>9. İletişim Bilgileri</h2>
+                        <p>Bu Şartlar hakkında herhangi bir sorunuz varsa, lütfen bizimle nashxefel06@gmail.com adresinden iletişime geçin.</p>
+                    </div>
+                `
+            }
+        };
+
+        languageToggle.addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.title = translations[lang].title;
+            document.querySelector('h1').textContent = translations[lang].title;
+            tosContent.innerHTML = translations[lang].content;
+        });
+    </script>
+</body>
+</html>
