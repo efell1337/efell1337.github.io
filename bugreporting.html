@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Theme Video Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #121212;
+            transition: background-color 0.3s ease;
+        }
+        .video-container {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+        video {
+            border-radius: 12px;
+        }
+        .controls {
+            background: rgba(30,30,30,0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="video-container w-full max-w-4xl bg-gray-900 rounded-xl overflow-hidden shadow-2xl">
+        <video 
+            controls 
+            class="w-full" 
+            poster="/api/placeholder/1280/720"
+        >
+            <source src="bug.mkv" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls p-4 flex items-center justify-between">
+            <div class="text-sm text-gray-400">
+                Dark and darker cyclops bug report | yes this is my website i was gonna put it on youtube but it took too long
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add some interactivity
+        const video = document.querySelector('video');
+        const container = document.querySelector('.video-container');
+
+        video.addEventListener('play', () => {
+            container.classList.add('ring-4', 'ring-blue-500');
+        });
+
+        video.addEventListener('pause', () => {
+            container.classList.remove('ring-4', 'ring-blue-500');
+        });
+    </script>
+</body>
+</html>
