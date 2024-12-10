@@ -11,31 +11,33 @@
   <link rel="stylesheet" href="efel.css">
 </head>
 <body>
-  </div>
-  <div id="lyric-container">
-    <div id="lyric-display"></div>
-  </div>
-  <div class="container">
-    <div class="profile-picture"></div>
-    <div class="content">
-      <h2>efel.py</h2>
-      <p>wandering through the noise, searching for a silence i've never known.</p>
-    </div>
-    <div class="social-icons">
-        <a href="https://discord.com/users/757335355644051656" class="discord"><i class="fab fa-discord"></i></a>
-        <a href="https://www.instagram.com/efel.py" class="instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.quran.com" class="islamic"><i class="fas fa-moon"></i></a>
-        <a href="#" class="info-icon" id="infoIcon"><i class="fas fa-question-circle"></i></a>
+  <div id="click-to-continue" class="click-to-continue">
+    <div class="continue-content">
+      <h2>Tap to Continue</h2>
+      <p>Devam etmek için tıkla</p>
+      <div class="tap-animation">
+        <i class="fas fa-hand-pointer"></i>
       </div>
     </div>
   </div>
 
-  <div class="about-me-container" style="display: none;">
-    <p>Quite the curious one you are.</p>
-    <p>The names Efel, 15 years old. I enjoy coding, reading and playing video games. <p>Im turkish!</p>
-    <p></p>
+  <div id="main-content" style="display: none;">
+    <div id="lyric-container">
+      <div id="lyric-display"></div>
+    </div>
+    <div class="container">
+      <div class="profile-picture"></div>
+      <div class="content">
+        <h2>efel.py</h2>
+        <p>wandering through the noise, searching for a silence i've never known.</p>
+      </div>
+      <div class="social-icons">
+          <a href="https://discord.com/users/757335355644051656" class="discord"><i class="fab fa-discord"></i></a>
+          <a href="https://www.instagram.com/efel.py" class="instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.quran.com" class="islamic"><i class="fas fa-moon"></i></a>
+      </div>
+    </div>
   </div>
-
   <div class="background-audio">
     <audio id="backgroundAudio" loop>
       <source src="risesthemoon.mp3" type="audio/mpeg">
@@ -48,6 +50,5 @@
   </div>
   <canvas id="backgroundCanvas"></canvas>
   <script src="efel.js"></script>
-  </body>
-  </html>
-  
+</body>
+</html>
