@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   particleSystem.update();
 
   // Audio Setup
-  const initialVolume = 0.5;
+  const initialVolume = 0.75;
   let audioContext;
   let gainNode;
 
