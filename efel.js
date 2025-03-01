@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Title Animation
   const titles = [
     "@  ", "@ | ", "@  ", "@  ", "@ | ", "@  ", "@ e", "@ ef",
     "@ efe", "@ efel", "@ efel.", "@ efel.p", "@ efel.py",
@@ -14,44 +13,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(changeTitle, 500);
 
-  // Elements
   const clickToContinue = document.getElementById('click-to-continue');
   const mainContent = document.getElementById('main-content');
   const audioElement = document.getElementById('backgroundAudio');
   const volumeSlider = document.getElementById('volumeSlider');
   const volumeIcon = document.querySelector('.volume-icon');
-
-  // Particle System
   const canvas = document.getElementById('backgroundCanvas');
   const particleSystem = new ParticleSystem(canvas);
   particleSystem.update();
-
-  // Audio Setup
   const initialVolume = 0.75;
   let audioContext;
   let gainNode;
-
-  // Handle click on the "Tap to Continue" overlay
   clickToContinue.addEventListener('click', () => {
-    // Hide the overlay
     clickToContinue.style.display = 'none';
-
-    // Show the main content
     mainContent.style.display = 'block';
-
-    // Initialize audio context
     if (!audioContext) {
       audioContext = new (window.AudioContext || window.webkitAudioContext)();
       const audioSource = audioContext.createMediaElementSource(audioElement);
       gainNode = audioContext.createGain();
       audioSource.connect(gainNode).connect(audioContext.destination);
-
-      // Set initial volume
-      const dbReduction = -8; // Adjust this as needed
+      const dbReduction = -5;
       const baseGain = Math.pow(10, dbReduction / 20);
       gainNode.gain.value = baseGain * initialVolume;
-
-      // Volume control
       volumeSlider.value = initialVolume * 100;
       volumeSlider.addEventListener('input', () => {
         const sliderValue = volumeSlider.value / 100;
@@ -59,14 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
         updateVolumeIcon(sliderValue);
       });
     }
-
-    // Play audio
     audioContext.resume().then(() => {
       audioElement.play();
     });
   });
-
-  // Update volume icon based on level
   function updateVolumeIcon(volume) {
     if (volume > 0.5) {
       volumeIcon.className = 'fas fa-volume-up volume-icon';
@@ -76,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
       volumeIcon.className = 'fas fa-volume-mute volume-icon';
     }
   }
-  // Lyric Display
   class LyricDisplay {
     constructor(lyrics, containerSelector) {
       this.lyrics = lyrics;
@@ -120,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     scheduleNextLyric() {
       const nextLyricInterval = this.lyrics[this.currentIndex].interval;
-      this.timerStart = Date.now(); // Record when the timer starts
+      this.timerStart = Date.now();
       this.progressTimer = setTimeout(() => {
         this.progressLyrics();
       }, nextLyricInterval);
@@ -154,46 +132,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  let lyricRemainingTime = null; // Stores remaining time for the current lyric
+  let lyricRemainingTime = null;
 
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
-      // Pause music
       audioElement.pause();
-  
-      // Stop lyric progression and save remaining time and current state
       if (lyricDisplay.progressTimer) {
         clearTimeout(lyricDisplay.progressTimer);
-        
-        // Save the exact remaining time by comparing current time to when the timer was started
         lyricRemainingTime = lyricDisplay.lyrics[lyricDisplay.currentIndex].interval - 
                              (Date.now() - lyricDisplay.timerStart);
         
         lyricDisplay.progressTimer = null;
       }
     } else if (document.visibilityState === 'visible') {
-      // Resume music
       audioElement.play();
-  
-      // Resume lyric progression
       if (lyricRemainingTime !== null) {
-        // Wait for the remaining time, then progress the lyrics
         lyricDisplay.progressTimer = setTimeout(() => {
           lyricDisplay.progressLyrics();
-          lyricRemainingTime = null; // Reset after resuming
+          lyricRemainingTime = null;
         }, lyricRemainingTime);
-  
-        // Update the timer start time to reflect the pause
         lyricDisplay.timerStart = Date.now();
       } else {
-        // If no saved time, resume the regular schedule
         lyricDisplay.scheduleNextLyric();
       }
     }
   });
   
-
-  // Lyric Display
   const lyrics = [
     { text: "♪", interval: 7880 },
     { text: "Days seem sometimes as if they'll never end", interval: 5340 },
@@ -227,12 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
     { text: "Breathe, breathe, breathe", interval: 6720 },
     { text: "♪", interval: 9600 }
   ];
-  
   const lyricDisplay = new LyricDisplay(lyrics, '#lyric-display');
   lyricDisplay.init();
 });
-
-  // Particle System
   class ParticleSystem {
     constructor(canvas) {
       this.canvas = canvas;
@@ -240,8 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
       this.particles = [];
       this.mouse = { x: null, y: null, radius: 200 };
       this.globalTime = 0;
-
-      // Physics parameters
       this.damping = 0.98;
       this.mouseRepelFactor = 0.0008;
       this.baseSpeedFactor = 0.3;
@@ -308,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
         particle.velocityX *= this.damping;
         particle.velocityY *= this.damping;
 
-        // Wrap-around and bounce logic
         ['x', 'y'].forEach(axis => {
           const dimension = axis === 'x' ? this.canvas.width : this.canvas.height;
           if (particle[axis] < 0) {
@@ -321,7 +279,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        // Mouse interaction
         if (this.mouse.x !== null && this.mouse.y !== null) {
           let dx = this.mouse.x - particle.x;
           let dy = this.mouse.y - particle.y;
@@ -333,8 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.velocityY -= dy * repelFactor * this.mouseRepelFactor;
           }
         }
-
-        // Draw node and glow
         this.ctx.beginPath();
         this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         this.ctx.fillStyle = 'white';
